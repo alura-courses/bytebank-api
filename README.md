@@ -1,42 +1,41 @@
 # Bytebank web API
 
-Web API em Spring Boot para consumo do App em Flutter do Bytebank
+Spring Boot Web API for consumption of the Bytebank Flutter App
 
-## Funcionalidades
+## Functionalities
 
-A Web API oferece as seguintes funcionalidades:
+The Web API offers the following features:
 
-- Listagem e cadastro de transações.
+- Listing and registration of transactions.
 
-## Como executar
+## How to run
 
-Abra o terminal ou prompt e acesse o arquivo **server.jar**, então execute o seguinte comando:
+Open the terminal or prompt and access the ** server.jar ** file, then run the following command:
 
 ```
 java -jar server.jar
 ```
 
-> A build do projeto foi feita com base no Java 8, portanto, é recomendado usar o Java 8 para que tudo funcione como esperado.
+> The project was built based on Java 8, so it is recommended to use Java 8 so that everything works as expected.
 
-## Modificando properties de inicialização
+## Modifying startup properties
+By default Spring Boot will run the application on port `8080` and will set the default password to` 1000` to save transactions.
 
-Por padrão o Spring Boot vai rodar a aplicação na porta `8080` e vai configurar a senha padrão no valor `1000` para salvar transações.
-
-Caso queria modificar ambos valores execute o arquivo da seguinte maneira:
+If you want to modify both values, execute the file as follows:
 
 ```
 java -jar server.jar --server.port=8081 --user.password=2000
 ```
 
-> Nesta amostra a web api vai rodar na porta `8081` com a senha de transações `2000`
+>In this sample the web api will run on port `8081` with the transaction password` 2000`
 
-## Mapeamento de end-points
+## End-point mapping
 
-Para acessar as funcionalidades foram disponibilizados os seguintes end-points:
+To access the functionalities, the following end-points were made available:
 
 - `/transactions`:
-  - **GET**: Listagem:
-    - O resultado é ordenado pela data e hora da criação em ordem crescente.
+  - **GET**: List:
+    - The result is ordered by the creation date and time in ascending order.
 
   ```
   // response example
@@ -62,11 +61,11 @@ Para acessar as funcionalidades foram disponibilizados os seguintes end-points:
   ]
   ```
 
-  - **POST**: Inserção:
-    - Para salvar a transação é necessário o envio do *header* `password` conforme o valor configurado na aplicação:
-      - Caso não seja enviado, é retornado `400 BAD REQUEST`;
-      - Caso falhar na autenticação `401 UNAUTHORIZED`.
-    - Não é possível alterar a transação, caso haja a tentativa é retornado `409 CONFLICT`.
+  - **POST**: Insert:   
+    - To save the transaction it is necessary to send the * header * `password` according to the value configured in the application:
+      - If not sent, `400 BAD REQUEST` is returned;
+      - If `401 UNAUTHORIZED` authentication fails.
+    - It is not possible to change the transaction if `409 CONFLICT` is attempted.
 
   ```
   // request body example
